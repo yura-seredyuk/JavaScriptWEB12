@@ -1,3 +1,5 @@
+Classwork: https://github.com/yura-seredyuk/JavaScriptWEB12
+
 Розв'язати наступні задачі:
 Виведення організувати на HTML сторінці!
 
