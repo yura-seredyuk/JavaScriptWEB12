@@ -110,15 +110,15 @@
 // console.log(this)
 
 
-function fact(n){
-    f = 1
-    for(let i = 1; i <= n; i++){
-        f *= i
-    }
-    return f
-}
+// function fact(n){
+//     f = 1
+//     for(let i = 1; i <= n; i++){
+//         f *= i
+//     }
+//     return f
+// }
 
-console.log(fact(5))
+// console.log(fact(5))
 
     // n   i   f   
     // 5       1
@@ -129,12 +129,12 @@ console.log(fact(5))
     // 5   5   120
     // 5   6
 
-function fact_r(n){
-    if(n == 0) return 1
-    return fact_r(n-1) * n
-}
+// function fact_r(n){
+//     if(n == 0) return 1
+//     return fact_r(n-1) * n
+// }
 
-console.log(fact_r(5))
+// console.log(fact_r(5))
 
     // n  fact_r 
     // 5   (4) * 5
@@ -143,3 +143,99 @@ console.log(fact_r(5))
     // 2   (1) * 2
     // 1   (0) * 1
     // 0   1
+
+    config = [
+        {
+            "color": "black",
+            "border": "5px solid red",
+            "border-radius": "0",
+            "background-color": "orange",
+            "font-family": "'Courier New', Courier, monospace",
+            "font-size": "20px",
+            "font-weight": "normal",
+            "font-style": "italic",
+            "width": "700px",
+            "height": "300px",
+        },
+        { "color": "black",
+            "border": "5px solid orange",
+            "border-radius": "0",
+            "background-color": "orange",
+            "font-family": "'Courier New', Courier, monospace",
+            "font-size": "20px",
+            "font-weight": "normal",
+            "font-style": "italic",
+            "width": "700px",
+            "height": "300px",},
+        {  "color": "black",
+            "border": "5px solid blue",
+            "border-radius": "0",
+            "background-color": "orange",
+            "font-family": "'Courier New', Courier, monospace",
+            "font-size": "20px",
+            "font-weight": "normal",
+            "font-style": "italic",
+            "width": "700px",
+            "height": "300px",},
+        { "color": "black",
+            "border": "5px solid yellow",
+            "border-radius": "0",
+            "background-color": "orange",
+            "font-family": "'Courier New', Courier, monospace",
+            "font-size": "20px",
+            "font-weight": "normal",
+            "font-style": "italic",
+            "width": "700px",
+            "height": "300px",},
+        { "color": "black",
+            "border": "5px solid green",
+            "border-radius": "0",
+            "background-color": "orange",
+            "font-family": "'Courier New', Courier, monospace",
+            "font-size": "20px",
+            "font-weight": "bold",
+            "font-style": "italic",
+            "width": "700px",
+            "height": "300px",}
+    ]
+    
+    let $buttons = document.querySelectorAll('button')
+
+    // function box_cofig(conf_obj){
+    //     style = ''
+    //     target = document.getElementById('par')
+    //     for (key in conf_obj){
+    //         style += `${key}: ${conf_obj[key]}; `
+    //     }
+    //     // target.style.color = conf_obj.color
+    //     // target.style.border = conf_obj.border
+    //     // target.style.fontWeight = conf_obj['font-weight']
+
+    //     target.style = style
+    //     // target.setAttribute('style',"border: 5px solid green;")
+    // }
+    // // box_cofig(config[4])
+    // for(let i = 0; i < $buttons.length; i++ ){
+    //     $buttons[i].addEventListener('click', ()=>{
+    //         box_cofig(config[i])
+    //     })
+    // }
+    
+    target_element = document.getElementById('par')
+
+    for(let i = 0; i < $buttons.length; i++ ){
+        $buttons[i].addEventListener('click', ()=>{
+            class_list = target_element.classList
+            if (class_list.contains('default')){
+                class_list.remove('default')
+            }
+            for(item of class_list){
+                if(item.slice(0,2) == 'st'){
+                    class_list.remove(item)
+                    break
+                }
+            }
+            class_list.add(`st${i+1}`)
+        })
+    }
+

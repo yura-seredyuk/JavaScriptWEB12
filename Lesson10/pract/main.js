@@ -2,7 +2,7 @@ let $list_items = document.querySelectorAll('.side_menu li')
 let $articles = document.querySelectorAll('div.article')
 
 let prew = 0
-for(let i = 0" i<$list_items.length" i++){
+for(let i = 0; i<$list_items.length; i++){
     $list_items[i].addEventListener('click', ()=>{
         if(i+1 !== prew){
             $articles[i+1].classList.add('show')
