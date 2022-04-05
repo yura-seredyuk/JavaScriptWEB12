@@ -5,7 +5,7 @@
 }
 body{
     position: relative;
-    background-color: black;
+    /* background-color: black; */
 }
 .gallery{
     width: 620px;
@@ -57,11 +57,11 @@ body{
     opacity: 0.5;
     position: relative;
 }
-.gallery ul>li>img:hover{
+/* .gallery ul>li>img:hover{
     opacity: 1;
     transform: scale(1.5);
     z-index: 999;
-}
+} */
 .gallery .active_image{
     opacity: 1 !important;
 }
