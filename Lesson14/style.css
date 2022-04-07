@@ -21,3 +21,13 @@ body{
     display: flex;
     justify-content: center;
 }
+
+.book{
+    border: 1px solid #bbbbbb;
+    border-radius: 10px;
+}
+.book img{
+    float: left;
+    padding: 10px;
+    width: 200px;
+}

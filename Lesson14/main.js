@@ -72,57 +72,117 @@
 // bobik.info()
 
 // game elements
-play_zone = document.querySelector('.play_zone')
+// play_zone = document.querySelector('.play_zone')
 
-let item = function(width, height, top=0, left, color, id){
+// let item = function(width, height, top=0, left, color, id){
+//     return{
+//         width, height, top, left, color, id,
+//         draw:function(){
+//             figure = document.createElement('div')
+//             figure.classList.add('item')
+//             figure.setAttribute('id','id'+id)
+//             figure.style.width = this.width + 'px'
+//             figure.style.height = this.height + 'px'
+//             figure.style.top = this.top + 'px'
+//             figure.style.left = this.left + 'px'
+//             figure.style.backgroundColor = this.color
+//             play_zone.append(figure)
+//         },
+//         moveLeft:function(){
+//             if (this.left>=20){
+//                 this.left = this.left-20
+//                 document.getElementById('id'+id).style.left = this.left + 'px'}
+//         },
+//         moveRight:function(){
+//             if (this.left<=500-this.width){
+//                 this.left = this.left+20
+//                 document.getElementById('id'+id).style.left = this.left + 'px'}
+//         },
+//         moveUp:function(){
+//             if (this.top>=20){
+//                 this.top = this.top-20
+//                 document.getElementById('id'+id).style.top = this.top + 'px'}
+//         },
+//         moveDown:function(){
+//             if (this.top<300-this.height){
+//                 this.top = this.top+20
+//                 document.getElementById('id'+id).style.top = this.top + 'px'}
+//         }
+//     }
+// }
+
+
+
+// item1 = item(20, 20, 100, 90, 'green')
+// item1.draw()
+
+// function down(){
+//     item1.moveDown()
+// }
+
+// setInterval(down,1000)
+
+// document.querySelector('.left').addEventListener('click',()=>{
+//     item1.moveLeft()
+// })
+// document.querySelector('.right').addEventListener('click',()=>{
+//     item1.moveRight()
+// })
+// document.querySelector('.up').addEventListener('click',()=>{
+//     item1.moveUp()
+// })
+// document.querySelector('.down').addEventListener('click',()=>{
+//     item1.moveDown()
+// })
+
+
+// arr = [
+//     [1,2],
+//     [3,4],
+//     [8,[5,[6,[7]]]]
+// ]
+// console.log(arr)
+// console.log(arr[0][0])
+// console.log(arr[2][1][1][1][0])
+
+// library
+let books = []
+book = function(title, authors, year, language, image, description){
     return{
-        width, height, top, left, color, id,
-        draw:function(){
-            figure = document.createElement('div')
-            figure.classList.add('item')
-            figure.setAttribute('id','id'+id)
-            figure.style.width = this.width + 'px'
-            figure.style.height = this.height + 'px'
-            figure.style.top = this.top + 'px'
-            figure.style.left = this.left + 'px'
-            figure.style.backgroundColor = this.color
-            play_zone.append(figure)
-        },
-        moveLeft:function(){
-            if (this.left>=20){
-                this.left = this.left-20
-                document.getElementById('id'+id).style.left = this.left + 'px'}
-        },
-        moveRight:function(){
-            if (this.left<=500-this.width){
-                this.left = this.left+20
-                document.getElementById('id'+id).style.left = this.left + 'px'}
-        },
-        moveUp:function(){
-            if (this.top>=20){
-                this.top = this.top-20
-                document.getElementById('id'+id).style.top = this.top + 'px'}
-        },
-        moveDown:function(){
-            if (this.top<300-this.height){
-                this.top = this.top+20
-                document.getElementById('id'+id).style.top = this.top + 'px'}
-        }
+        title, authors, year, language, image, description
     }
 }
 
-item1 = item(20, 20, 100, 90, 'green')
-item1.draw()
+book1 = book(
+        'Книга Java. Script. Сильні сторони.',
+        'Дуглас Крокфорд (Пітер)',
+        2010,
+        'ukrainian',
+        'https://images.zakupka.com/i3/firms/27/5321/5321345/pic_304c24d158c2b6a_300x300.webp',
+        `На жаль, цей товар відсутній 
+        Можливо, вас зацікавлять схожі товари`
+)
+books.push(book1)
 
-document.querySelector('.left').addEventListener('click',()=>{
-    item1.moveLeft()
-})
-document.querySelector('.right').addEventListener('click',()=>{
-    item1.moveRight()
-})
-document.querySelector('.up').addEventListener('click',()=>{
-    item1.moveUp()
-})
-document.querySelector('.down').addEventListener('click',()=>{
-    item1.moveDown()
+let addButton = document.querySelector('.add-button'),
+    target = document.querySelector('.books')
+
+addButton.addEventListener('click', (event)=>{
+    event.preventDefault()
+    book_item = book(
+        addItem.title.value,
+        addItem.authors.value,
+        addItem.year.value,
+        addItem.language.value,
+        addItem.image.value,
+        addItem.description.value
+    )
+    books.push(book_item)
+    template = `<div class="col-12 col-md-6 book">
+    <img src="${book_item.image}" alt="${book_item.title}">
+    <h4>${book_item.title}</h4>
+    <p><b>${book_item.authors}</b> <i>${book_item.year}</i> <u>${book_item.language}</u></p>
+    <p>${book_item.description}</p>
+</div>`
+    target.insertAdjacentHTML('beforeend', template)
 })
