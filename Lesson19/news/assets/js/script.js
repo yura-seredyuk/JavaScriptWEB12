@@ -10,8 +10,39 @@ let category_list = {
 
 }
 
+function checkImg(url, imgStatus){
+    if(url){
+        // fetch(url)
+        // .then(response=>{
+        //     if(response.status!=200){
+        //         return false
+        //     }
+        //     else {
+        //         return true
+        //     }
+        // })
+        // .then(status=>{
+        //     imgStatus = status
+        // }) 
+        fetch(url).
+        then(function(response) {
+            console.log(response.status); // returns 200
+            response.blob()
+        .then(function(myBlob) {
+              var objectURL = URL.createObjectURL(myBlob);
+              return objectURL
+              myImage.src = objectURL;
+            })
+        })
+    } else {
+        return false
+    }
+}
 
 function article_html(article){
+    let status
+    checkImg(article.urlToImage, status)
+    console.log(status)
     published = new Date(article.publishedAt).toLocaleString()
     img = article.urlToImage?article.urlToImage:'assets/img/placeholder-image.png'
     return `<article class="row">
@@ -29,7 +60,7 @@ function loadNews(category=''){
     let country = 'ua',
         country_q = ``,
         category_q = category?`&category=${category}`:''
-    let url = `https://newsapi.org/v2/top-headlines?country=${country}${category_q}&pageSize=100&apiKey=f210154948eb4e6e89d98eb5582468a7`
+    let url = `https://newsapi.org/v2/top-headlines?country=${country}${category_q}&pageSize=20&apiKey=f210154948eb4e6e89d98eb5582468a7`
 
     fetch(url)
     .then(response=>response.json())
