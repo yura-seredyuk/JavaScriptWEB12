@@ -1,0 +1,40 @@
+article content, article footer{
+    display: flex;
+}
+
+article header{
+    display: flex;
+}
+article header time{
+    min-width: 140px;
+}
+article header h4{
+    /* display: inline; */
+    margin: auto 10px;
+    font-weight: 600;
+}
+article header h4 span{
+    color: gray;
+    font-weight: normal;
+    margin-left: 10px;
+}
+
+article content img{
+    width: 100px;
+    margin: 10px 10px 10px 0;
+}
+
+article content p{
+    margin: 5px;
+}
+article footer{
+    display: flex;
+    justify-content: flex-end;
+}
+article footer span{
+    margin-right: 10px;
+    font-style: italic;
+}
+/* article footer::after{
+    content: '...';
+} */
