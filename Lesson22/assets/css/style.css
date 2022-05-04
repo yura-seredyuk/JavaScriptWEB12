@@ -92,3 +92,6 @@ ul.c-controls li a:hover {
     padding: 5px 10px;
     font-size: 1.25em;
 }
+span.fa-pencil, span.fa-trash-o{
+    cursor: pointer;
+}

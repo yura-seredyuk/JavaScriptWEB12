@@ -38,7 +38,30 @@
                 </div>
                 
                 <ul class="list-group" id="contact-list">
-                   
+                    <li class="list-group-item" style="display: block;">
+                        <form action="" name="edit_contact" name="edit_contact">
+                            <div class="col-xs-12 col-sm-3">
+                                <img src="assets/images/placeholder-image.png" class="img-responsive img-circle" />
+                                
+                            </div>
+                            <div class="col-xs-12 col-sm-9">
+                                <label for="first_name">first name:</label>
+                                <input type="text" name="first_name" value="" required>
+                                <label for="last_name">last name:</label>
+                                <input type="text" name="last_name" value="" required><br>
+                                <label for="photo">photo:</label>
+                                <input type="text" name="photo" value="" required>
+                                <span class="glyphicon glyphicon-map-marker text-muted c-info" data-toggle="tooltip"></span>
+                                <input type="text" name="address" value="" required>
+                                <span class="glyphicon glyphicon-earphone text-muted c-info" data-toggle="tooltip" title="(870) 288-4149"></span>
+                                <input type="text" name="phone" value="" required>
+                                <span class="fa fa-comments text-muted c-info" data-toggle="tooltip" title="scott.stevens@example.com"></span>
+                                <input type="text" name="email" value="" required>
+                            </div>
+                            <input type="button" name="submit" value="Edit/Add">
+                            <div class="clearfix"></div>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
