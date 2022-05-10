@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>  
+    <style>
+        .root table{
+            border-collapse: collapse;
+        }
+        .root td, .root th{
+            border: 1px solid #9b9b9b;
+            padding: 2px 5px;
+            text-align: center;
+        }
+        .root th{
+            border-width: 2px;
+        }
+    </style> 
+</head>
+<body>
+    <div class="root"></div>
+    [gallery]img1, img2[endgallery]
+
+    
+    <!-- <script src=""></script> -->
+    <script>
+        // let x ='text'
+        // let arr = [4, '', true]
+        // let obj = {'key3':'value', 'key2':2}
+        // console.log(arr[0])
+        // console.log(obj['key2'])
+        // let y
+        // if (x>0){
+        //     y = '>'
+        // } 
+        // else if(x<0){
+        //     y = '<'
+        // } 
+        // y = x>0?'>':'<'
+        // y = expression?true:false
+        // console.log(y)
+        // for(i in obj){
+        //     console.log(obj[i])
+        // }
+        // for(i of x){
+        //     console.log(i)
+        // }
+
+
+        // ---- Array
+        // let arr = [2,4,6,7,8,3,6], abb = [33,44]
+        // arr.push(0)
+        // x = arr.pop(2)
+        // x = arr.shift()
+        // x = arr.unshift(0, 2, 77)
+        // acc = []
+        // acc = arr.concat(abb)
+        // console.log(acc)
+        // console.log(arr.indexOf(10))
+        // console.log(arr.lastIndexOf(6))
+        // console.log(arr.join(', '))
+        // console.log(arr.sort())
+        // console.log(arr.reverse())
+        // console.log(arr.slice(0,3))
+        // console.log(arr.length)
+        // text = '  This   is a text!  '
+        // console.log(text.split('i'))
+        // console.log(text.trim())
+        // console.log(text)
+        // console.log(...arr)
+        // function sum(...array){
+        //     console.log(array)
+        // }
+
+        // sum(arr)
+        // sum(1,2,3,4,5,6)
+        // console.log(typeof(arr[0]))
+        // console.log(arr.filter(item => item > 6))
+        // console.log(arr.map(item=>item + 10))
+        // arr.forEach(item=> console.log(item))
+        // console.log(arr.reduce((previousValue, currentValue) =>previousValue + currentValue,
+        // 10))
+        // let sum = 10
+        // for(item of arr){
+        //     sum += item
+        // }
+        // console.log(sum)
+
+        let root = document.querySelector('.root')
+        let database = []
+        // --- fill table
+        let table = document.createElement('TABLE')
+        for(let i = 1; i <=30; i++){
+            let tr = document.createElement('TR')
+            database.push([])
+            for(let j=1; j<=24; j++){
+                let td = document.createElement('TD')
+                database[i-1].push(Math.ceil(Math.random()*10)+20)
+                td.textContent = database[i-1][j-1] + "°"
+                tr.appendChild(td) 
+            }
+            table.appendChild(tr)
+        }
+        root.appendChild(table)
+        // ---- first row
+        let table_header_row = document.createElement('TR')
+        for(let i=1; i<=24; i++){
+            let th = document.createElement('TH')
+            th.textContent = i<10?'0'+i:i
+            table_header_row.appendChild(th) 
+        }
+        table.insertAdjacentElement('afterbegin',table_header_row)
+        // ----- first column
+        let table_rows = document.querySelectorAll('.root table tr')
+        for(row of table_rows){
+            let th = document.createElement('TH')
+            th.textContent = row.rowIndex>0?row.rowIndex:''
+            row.prepend(th)
+        }
+        console.log(table_rows)
+        // --- function for add new column
+        function add_right_column(table_rows_NodeList, title, append_data, func){
+            let th = document.createElement('TH')
+            th.textContent = title
+            table_rows_NodeList[0].appendChild(th)
+            for(let i = 1; i < table_rows_NodeList.length; i++){
+                let td = document.createElement('TD')
+                console.log(i, append_data[i-1])
+                td.textContent = func(append_data[i-1])
+                table_rows_NodeList[i].appendChild(td)
+            }
+        }
+        // ---- average temp
+        function avg(database){
+            return (database.reduce((accumulator, item)=>accumulator+item)/database.length).toFixed(2) + "°"
+        }
+        add_right_column(table_rows, 'Average', database, avg)
+
+        // ---- min temp
+        function min(database){
+            return Math.min(...database) + "°"
+        }
+        add_right_column(table_rows, 'Minimal temp', database, min)
+
+        // ---- max temp
+        function max(database){
+            return Math.max(...database) + "°"
+        }
+        add_right_column(table_rows, 'Max temp', database, max)
+
+        // ---- hotest time
+        function hotTime(database){
+            maxTemp=Math.max(...database)
+            return database.indexOf(maxTemp) + 1 + "h"
+        }
+        add_right_column(table_rows, 'Hotest time', database, hotTime)
+
+        // table.insertAdjacentElement("beforebegin", element) ==> table.before(element)
+        // table.insertAdjacentElement("afterbegin", element) ==> table.prepend(element)
+        // table.insertAdjacentElement("beforeend", element) ==> table.append(element)
+        // table.insertAdjacentElement("afterend", element) ==> table.after(element)
+    </script>
+</body>
+</html>

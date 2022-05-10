@@ -1,0 +1,13 @@
+b::first-letter{
+    /* text-transform: uppercase; */
+    color: red;
+}
+
+.img_gallery{
+    width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.img_gallery img{
+    width: 200px;
+}

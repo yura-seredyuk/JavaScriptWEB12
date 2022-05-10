@@ -1,0 +1,22 @@
+article{
+    border: 1px solid gray;
+    padding: 5px;
+    margin: 10px auto;
+    box-shadow: 0 0 5px 3px gray;
+}
+article .image img{
+    width: 100%;
+}
+article .author{
+    text-decoration: underline;
+}
+article .published{
+    font-style: italic;
+}
+article .description{
+    text-align: justify;
+    border-bottom: 1px solid lightgray;
+}
+article a{
+    text-decoration: none !important;
+}

@@ -1,0 +1,5 @@
+// Homework
+//  1 add cursor pointer for header h4
+//  2 show/hide only for event.target.tagName ==  'H4'
+//  3 remowe seconds from time
+//  4 add css styles

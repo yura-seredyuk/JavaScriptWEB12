@@ -1,0 +1,33 @@
+body{
+    position: relative;
+}
+.root{
+    width: 504px;
+    margin: 0 auto;
+}
+.play_zone{
+    border: 2px solid black;
+    background-color: lightgrey;
+    height: 300px;
+    width: 500px;
+    position: relative;
+    overflow: hidden;
+}
+.item{
+    border: 3px solid red;
+    position: absolute;
+}
+.controller{
+    display: flex;
+    justify-content: center;
+}
+
+.book{
+    border: 1px solid #bbbbbb;
+    border-radius: 10px;
+}
+.book img{
+    float: left;
+    padding: 10px;
+    width: 200px;
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <!------ Include the above in your HEAD tag ---------->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a href="http://bootsnipp.com/mouse0270/snippets/4l0k2" class="btn btn-danger hide" id="back-to-bootsnipp">Back to Bootsnipp</a>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading c-list">
+                    <span class="title">Contacts</span>
+                    <ul class="pull-right c-controls">
+                        <li><a href="#cant-do-all-the-work-for-you" data-toggle="tooltip" data-placement="top" title="Add Contact"><i class="glyphicon glyphicon-plus"></i></a></li>
+                        <li><a href="#" class="hide-search" data-command="toggle-search" data-toggle="tooltip" data-placement="top" title="Toggle Search"><i class="fa fa-ellipsis-v"></i></a></li>
+                    </ul>
+                </div>
+                
+                <div class="row" style="display: none;">
+                    <div class="col-xs-12">
+                        <div class="input-group c-search">
+                            <input type="text" class="form-control" id="contact-list-search">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search text-muted"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <ul class="list-group" id="contact-list">
+                    <li class="list-group-item" style="display: block;">
+                        <form action="" name="edit_contact" name="edit_contact">
+                            <div class="col-xs-12 col-sm-3">
+                                <img src="assets/images/placeholder-image.png" class="img-responsive img-circle" />
+                                
+                            </div>
+                            <div class="col-xs-12 col-sm-9">
+                                <label for="first_name">first name:</label>
+                                <input type="text" name="first_name" value="" required>
+                                <label for="last_name">last name:</label>
+                                <input type="text" name="last_name" value="" required><br>
+                                <label for="photo">photo:</label>
+                                <input type="text" name="photo" value="" required>
+                                <span class="glyphicon glyphicon-map-marker text-muted c-info" data-toggle="tooltip"></span>
+                                <input type="text" name="address" value="" required>
+                                <span class="glyphicon glyphicon-earphone text-muted c-info" data-toggle="tooltip" title="(870) 288-4149"></span>
+                                <input type="text" name="phone" value="" required>
+                                <span class="fa fa-comments text-muted c-info" data-toggle="tooltip" title="scott.stevens@example.com"></span>
+                                <input type="text" name="email" value="" required>
+                            </div>
+                            <input type="button" name="submit" value="Edit/Add">
+                            <div class="clearfix"></div>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+	</div>
+    
+    <!-- JavaScrip -->
+    <script src="assets/js/script.js"></script>
+</div>
+</body>
+</html>
