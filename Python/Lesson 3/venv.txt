@@ -1,0 +1,7 @@
+1. py -m pip install --user virtualenv
+2. python -m venv env
+3. env\Scripts\activate   --->  deactivate
+4. pip install ...
+5. pip freeze
+6. pip freeze > requirements.txt
+7. pip install -r requirements.txt

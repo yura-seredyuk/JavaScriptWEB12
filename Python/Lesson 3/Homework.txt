@@ -1,0 +1,7 @@
+API https://api.covid19api.com/summary
+
+---Зробити меню
+1. Show COVID19 information
+2. Sort by new confirmed
+3. Отримати детальну інформацію по назві країни ("Country")
+4. Show global information

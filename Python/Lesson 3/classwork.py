@@ -118,3 +118,89 @@ l = [1,5,2,5,6,3]
 # r = [[0 for i in range(1,4)] for j in range(1,4)]
 # print(r)
 
+
+#  ----- tuple ----
+
+# a = (1,)
+# b = (2,3)
+# c = tuple('text')
+# print(a,b,c)
+# d = 1,2,3,4
+# print(d)
+
+# a = 5
+# b = 1
+
+# # c = a
+# # a = b
+# # b = c
+# a,b = b,a
+
+# print(a,b)
+
+# x,y,*z, d = 1,2,3,4,5,6,10
+
+# print(x,y,z, d)
+
+# a = (1,2,3,3,)
+# a = a + tuple([10])
+# a =(3,3,3) + a
+# print(a)
+# print(a[1])
+# print(len(a), max(a), min(a))
+# print(a.index(1))
+# print(a.count(3))
+# print(1 in a)
+# print(a[1:5])
+
+
+# -------- dict -------
+
+# d = {}
+# print(d)
+
+# d = dict()
+# print(d)
+
+# d = {'k1':1, 'k2':2, 3:3, (1,):4}
+# print(d)
+
+# d = dict(a1=[1,2,3], b1='Text', c1=300)
+# # del d['c1']
+# d.update({'a2':0})
+# print(d)
+
+# print(d['a1'])
+# print(d['a1'][1])
+
+# print('a1' in d)
+# print(len(d))
+# print(d.keys())
+# print(d.values())
+# print(list(d))
+
+# print(d.pop('a2'))
+
+# for key in d:
+#     print(f'{key}={d[key]}')
+
+
+x = ['name', 'age']
+y = [['bob', 10], ['bill',15]]
+
+z = list(zip(x,y[0]))
+print(z)
+d = dict(zip(x,y[0]))
+d['height'] = 200
+print(d)
+
+# f = {m:n for i in y for(m,n) in zip(x,i)}
+# print(f)
+
+# from pprint import pprint
+# print(d.__dir__())
+
+import random
+
+print(random.random())
+print(random.randint(1,10))
