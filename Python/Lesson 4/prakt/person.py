@@ -1,4 +1,9 @@
-
+# def lines(func):
+#     def wrapper():
+#         print("*"*20)
+#         func()
+#         print("*"*20)
+#     return wrapper()
 
 class Person:
     DNA = 'Human'
@@ -8,12 +13,11 @@ class Person:
         self.__age = age
         self.__address = 'n/a'
 
-    def get_age(self):
-        return self.__age
+    def get_address(self):
+        return self.__address
 
-    def set_age(self, age):
-        if age > 0:
-            self.__age = age
+    def set_address(self, address):
+        self.__address = address
 
     @property
     def age(self):
@@ -25,6 +29,16 @@ class Person:
             self.__age = age
         else:
             print('Error!')
-
+    
+    # @lines
     def description(self):
-        print(f"\tName: {self._name}, age: {self.__age}.")
+        print("*"*20)
+        print(f"| Name: {self._name}.")
+        print(f"| Age: {self.__age}.")
+        print(f"| Address: {self.__address}.")
+        print("*"*20)
+
+
+if __name__ == "__main__":
+    Bob = Person('Bob', 30)
+    Bob.description()
