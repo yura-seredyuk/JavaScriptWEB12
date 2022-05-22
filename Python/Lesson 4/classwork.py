@@ -69,25 +69,27 @@
 # print(next(a))
 
 
-a = iter([1,2,3])
+# a = iter([1,2,3])
 
-print(a)
-print(next(a))
-print(next(a))
-print(next(a))
-
-
-def foo(limit = 10):
-    i = 0
-    while True:
-        yield i
-        i += 1
-        if i > limit:
-            raise StopIteration()
-
-a = foo(2)
-print(a)
-print(next(a))
-print(next(a))
-print(next(a))
+# print(a)
 # print(next(a))
+# print(next(a))
+# print(next(a))
+
+
+# def foo(limit = 10):
+#     i = 0
+#     while True:
+#         yield i
+#         i += 1
+#         if i > limit:
+#             raise StopIteration()
+
+# a = foo(2)
+# print(a)
+# print(next(a))
+# print(next(a))
+# print(next(a))
+# print(next(a))
+
+
