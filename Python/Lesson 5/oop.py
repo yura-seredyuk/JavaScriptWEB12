@@ -147,7 +147,7 @@
 #         cls.color = color
 #         return "Classmethod " + cls.color
 
-#     @staticmethod
+#     @staticlass_mutableethod
 #     def func(x):
 #         return f"This is a {x}"
 
@@ -169,4 +169,57 @@
 # print(squre.fig('yellow'))
 # print(squre.func(100))
 # print(8)
- 
+
+
+
+# class Singletone:
+#     obj = None
+
+#     def __new__(cls, *arg, **kwarg):
+#         # print('NEW', type(cls))
+#         if cls.obj is None:
+#             cls.obj = object.__new__(cls, *arg, **kwarg)
+#         return cls.obj
+
+#     def __init__(self) -> None:
+#         print('INIT', type(self))
+#         self.id = 2
+
+# s1 = Singletone()
+# s2 = Singletone()
+
+# print(id(s1), id(s2))
+
+
+# s3 = Singletone()
+# s1.id = 5
+# print(s3.id, s2.id)
+
+
+class MyClass:
+    class_mutable = []
+    class_inmutable = 'cl_inm'
+
+    def __init__(self) -> None:
+        self.instance_mutable = []
+        self.instance_inmutable = 'inst_inm'
+        self.__some = 'text'
+
+a = MyClass()
+
+print('a1', a.class_mutable, a.class_inmutable, a.instance_mutable, a.instance_inmutable)
+
+b = MyClass()
+
+b.class_mutable.append(1)
+b.class_inmutable = 'new_class_mutable'
+b.instance_mutable.append(2)
+b.instance_inmutable = 'new_instance_mutable'
+print('a2', a.class_mutable, a.class_inmutable, a.instance_mutable, a.instance_inmutable)
+print('b ', b.class_mutable, b.class_inmutable, b.instance_mutable, b.instance_inmutable)
+
+c = MyClass()
+c.instance_mutable.append(5)
+print('c ', c.class_mutable, c.class_inmutable, c.instance_mutable, c.instance_inmutable)
+# mutable: list, dict, set
+# inmuteble: frozenset, tuple, str, int, float, bool, NoneType
