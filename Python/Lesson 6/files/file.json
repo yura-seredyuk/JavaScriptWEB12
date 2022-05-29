@@ -1,0 +1,52 @@
+{
+    "exchangeRate": [
+        {
+            "baseCurrency": "UAH",
+            "currency": "CHF",
+            "purchaseRate": 15.5,
+            "purchaseRateNB": 15.638975,
+            "saleRate": 17.0,
+            "saleRateNB": 15.638975
+        },
+        {
+            "baseCurrency": "UAH",
+            "currency": "EUR",
+            "purchaseRate": 19.2,
+            "purchaseRateNB": 18.79492,
+            "saleRate": 20.0,
+            "saleRateNB": 18.79492
+        },
+        {
+            "baseCurrency": "UAH",
+            "currency": "GBP",
+            "purchaseRate": 24.0,
+            "purchaseRateNB": 23.632491,
+            "saleRate": 25.8,
+            "saleRateNB": 23.632491
+        },
+        {
+            "baseCurrency": "UAH",
+            "currency": "PLZ",
+            "purchaseRate": 4.2,
+            "purchaseRateNB": 4.492201,
+            "saleRate": 5.0,
+            "saleRateNB": 4.492201
+        },
+        {
+            "baseCurrency": "UAH",
+            "currency": "USD",
+            "purchaseRate": 15.35,
+            "purchaseRateNB": 15.056413,
+            "saleRate": 15.7,
+            "saleRateNB": 15.056413
+        },
+        {
+            "baseCurrency": "UAH",
+            "currency": "CAD",
+            "purchaseRate": 13.0,
+            "purchaseRateNB": 13.21074,
+            "saleRate": 15.0,
+            "saleRateNB": 13.21074
+        }
+    ]
+}
