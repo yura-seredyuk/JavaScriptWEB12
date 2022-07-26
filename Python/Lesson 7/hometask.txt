@@ -1,0 +1,5 @@
+classwork:  https://github.com/yura-seredyuk/JavaScriptWEB12/tree/master/Python/Lesson%207
+
+Tasks:
+ - розробити парсери для інших сайтів ('epravda.com.ua', 'life.pravda.com.ua', 'eurointegration.com.ua') за прикладом 'pravda_parser'
+ - поправити код pravda_parser для обробки списків
