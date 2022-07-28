@@ -32,13 +32,18 @@ def query_handler(call):
     answer = ''
     if call.data == '1':
         answer = 'It was 1!'
+        bot.send_message(call.message.chat.id, answer, parse_mode='HTML') 
     elif call.data == '2':
         answer = 'It was 2!'
+        bot.send_message(call.message.chat.id, answer, parse_mode='HTML') 
     elif call.data == '3':
         answer = 'It was 3!'
+        bot.send_message(call.message.chat.id, answer, parse_mode='HTML') 
     elif call.data == '4':
-        answer = 'It was 4!'
-    bot.send_message(call.message.chat.id, answer) 
+        
+        photo='https://telegram.org/file/464001006/1044e/ZDyna5YyQwE.51909/a7532c511d9bab9ea9'        
+        answer = '<i><b>Bold text</b></i>'
+        bot.send_photo(call.message.chat.id, caption=answer, photo=photo, parse_mode='HTML')
     # bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id) # hide buttons
 
 @bot.message_handler(content_types=['text'])
