@@ -33,22 +33,26 @@ try:
     # D - delete/delete
 
     # CREATE
-    # insert_query = '''INSERT INTO clients (id, name, email) VALUES (3, 'Did', 'did@gmail.com');'''
-    # cursor.execute(insert_query)
+    insert_query = '''INSERT INTO clients (id, name, email) 
+                    VALUES
+                    (3, 'Did', 'did@gmail.com'),
+                    (4, 'Dod', 'dod@gmail.com'),
+                    (5, 'Dad', 'dad@gmail.com');'''
+    cursor.execute(insert_query)
+    connection.commit()
+    print('Table was updated!')
+
+    # # UPDATE
+    # update_query = '''update clients SET email='robin@gmail.com' WHERE name = 'Rob';'''
+    # cursor.execute(update_query)
     # connection.commit()
-    # print('Table was updated!')
+    # print('Information was changed!')
 
-    # UPDATE
-    update_query = '''update clients SET email='robin@gmail.com' WHERE name = 'Rob';'''
-    cursor.execute(update_query)
-    connection.commit()
-    print('Information was changed!')
-
-    # DELETE
-    delete_query = '''DELETE FROM clients WHERE name = 'Did';'''
-    cursor.execute(delete_query)
-    connection.commit()
-    print('Row was deleted!')
+    # # DELETE
+    # delete_query = '''DELETE FROM clients WHERE name = 'Did';'''
+    # cursor.execute(delete_query)
+    # connection.commit()
+    # print('Row was deleted!')
 
 
     # READ
@@ -64,9 +68,6 @@ try:
     # print('Results: ',rez)
     for row in rez:
         print(*row, sep="\t")
-
-
-
 
 except (Exception, Error) as error:
     print("Error connection: ", error)

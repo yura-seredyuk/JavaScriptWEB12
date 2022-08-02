@@ -1,0 +1,22 @@
+Python	    PostgreSQL
+None	    NULL
+bool	    bool
+float	    real
+            double
+
+int         smallint
+long	    integer
+            bigint
+Decimal	    numeric
+str         varchar
+unicode	    text
+date	    date
+time	    time
+            timetz
+datetime	timestamp
+            timestamptz
+timedelta	interval
+list	    ARRAY
+tuple       Composite types
+namedtuple	IN syntax
+dict	    hstore
