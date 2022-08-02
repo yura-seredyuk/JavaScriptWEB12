@@ -1,0 +1,10 @@
+docs: https://core.telegram.org/bots/api
+
+classwork: https://github.com/yura-seredyuk/JavaScriptWEB12/tree/master/Python/Lesson%208
+
+tasks:
+    - доробити функції отримання та виведення даних за обговореними категоріями:
+    # # Погода - Parse (температура зараз (відчувається), мін, макс, ...)
+    # # Курс валют - API (USD, EUR, PLN)
+    # # Ковід інф - API інфа по україні
+    # # Орки - Parse - втрати*

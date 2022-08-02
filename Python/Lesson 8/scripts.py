@@ -9,6 +9,16 @@ def covid():
     URL = "https://api.covid19api.com/summary"
     img = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1020px-SARS-CoV-2_without_background.png"
     data = """<i>Data</i>\n<i><b>COVID</b></i>"""
+    response = requests.get(URL)
+    results = list(filter(lambda x: x['Country'] == 'Ukraine', response.json()['Countries']))[0]
+    data = f"""<i>Країна</i>: <b>{results["Country"]}</b>\n""" +\
+            f"""<i>Нові випадки</i>: <b>{results["NewConfirmed"]}</b>\n""" +\
+            f"""<i>Загальна кількість випадків</i>: <b>{results["TotalConfirmed"]}</b>\n""" +\
+            f"""<i>Нових смертей</i>: <b>{results["NewDeaths"]}</b>\n""" +\
+            f"""<i>Загальна кількість смертей</i>: <b>{results["TotalDeaths"]}</b>\n""" +\
+            f"""<i>Нових одужань</i>: <b>{results["NewRecovered"]}</b>\n""" +\
+            f"""<i>Загальна кількість одужань</i>: <b>{results["TotalRecovered"]}</b>\n"""
+    print(data)
     return img, data
 
 def weather():
@@ -32,4 +42,5 @@ def ork():
 
 
 if __name__ == "__main__":
+    covid()
     pass
