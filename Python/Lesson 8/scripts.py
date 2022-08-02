@@ -1,7 +1,7 @@
 """
 """
 import requests
-import bs4
+from bs4 import BeautifulSoup
 from datetime import datetime
 
 
@@ -22,9 +22,13 @@ def covid():
     return img, data
 
 def weather():
-    URL = "https://www.gismeteo.ua/ua/weather-rivne-4940/now/"
+    URL = "https://www.meteoprog.ua/ua/weather/Rivne/"
     img = "https://sinst.fwdcdn.com/img/newImg/sinoptic-logo.png"
-    data = "<i><b>WEATHER</b></i>"
+    response = requests.get(URL)
+    soup = BeautifulSoup(response.text, 'lxml')
+    section = soup.find('section', class_="today-block")
+    print(section)
+    data = "<i><b>WEATHER 🌬</b></i>"
     return img, data
 
 
@@ -42,5 +46,5 @@ def ork():
 
 
 if __name__ == "__main__":
-    covid()
-    pass
+    weather()
+    # pass
