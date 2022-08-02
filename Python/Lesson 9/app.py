@@ -32,12 +32,39 @@ try:
     # U - update/update
     # D - delete/delete
 
-
     # CREATE
-    insert_query = '''INSERT INTO clients (id, name, email) VALUES (1, 'Bob', 'bob@gmail.com');'''
-    cursor.execute(insert_query)
+    # insert_query = '''INSERT INTO clients (id, name, email) VALUES (3, 'Did', 'did@gmail.com');'''
+    # cursor.execute(insert_query)
+    # connection.commit()
+    # print('Table was updated!')
+
+    # UPDATE
+    update_query = '''update clients SET email='robin@gmail.com' WHERE name = 'Rob';'''
+    cursor.execute(update_query)
     connection.commit()
-    print('Table was updated!')
+    print('Information was changed!')
+
+    # DELETE
+    delete_query = '''DELETE FROM clients WHERE name = 'Did';'''
+    cursor.execute(delete_query)
+    connection.commit()
+    print('Row was deleted!')
+
+
+    # READ
+    columns = '''SELECT column_name FROM information_schema.columns WHERE TABLE_NAME = 'clients';'''
+    cursor.execute(columns)
+    rez = [item[0] for item in cursor.fetchall()]
+    # print('Results: ',rez)
+    print('\t'.join(rez))
+
+    select_query = '''SELECT * from clients;'''
+    cursor.execute(select_query)
+    rez = cursor.fetchall()
+    # print('Results: ',rez)
+    for row in rez:
+        print(*row, sep="\t")
+
 
 
 
