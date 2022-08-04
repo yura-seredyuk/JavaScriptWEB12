@@ -73,9 +73,9 @@ try:
     create_table_query = '''CREATE TABLE IF NOT EXISTS orders
                             (id SERIAL PRIMARY KEY,
                             employee_id INT NOT NULL REFERENCES employee(id),
+                            customer_id INT NOT NULL REFERENCES customer(id),
                             city_id INT NOT NULL REFERENCES city(id),
                             date_of_order DATE,
-                            customer_id INT NOT NULL REFERENCES customer(id),
                             product_id INT NOT NULL REFERENCES product(id),
                             price DEC);'''
     cursor.execute(create_table_query)
