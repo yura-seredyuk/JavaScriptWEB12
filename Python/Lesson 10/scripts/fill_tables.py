@@ -1,6 +1,6 @@
 import psycopg2
 from psycopg2 import Error
-from scripts.config import *
+from config import *
 
 
 try:
@@ -11,15 +11,17 @@ try:
                                 database = 'store_db')
     cursor = connection.cursor()
 
-    # CREATE
-    insert_query = '''INSERT INTO clients (id, name, email) 
-                    VALUES
-                    (3, 'Did', 'did@gmail.com'),
-                    (4, 'Dod', 'dod@gmail.com'),
-                    (5, 'Dad', 'dad@gmail.com');'''
-    cursor.execute(insert_query)
-    connection.commit()
-    print('Table was updated!')
+    # PRODUCT CATEGORY
+    # insert_query = '''INSERT INTO product_category (id, category_name)
+    #                     VALUES
+    #                     (1,'Cheese'),
+    #                     (2,'Fruits'),
+    #                     (3,'Meat'),
+    #                     (4,'Fish'),
+    #                     (5,'Drink');'''
+    # cursor.execute(insert_query)
+    # connection.commit()
+    # print('Table "product_category" was updated!')
 
 
 except (Exception, Error) as error:
