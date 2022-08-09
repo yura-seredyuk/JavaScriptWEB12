@@ -15,8 +15,14 @@ def fetch_url(url):
         return resp.content
 
 def fetch_all(url_list):
+    threads = []
     for link in url_list:
-        response = fetch_url(link)
+        thread = threading.Thread(target=fetch_url, args=(link,))
+        threads.append(thread)
+        thread.start()
+
+    for thread in threads:
+        thread.join()
 
 if __name__ == "__main__":
 

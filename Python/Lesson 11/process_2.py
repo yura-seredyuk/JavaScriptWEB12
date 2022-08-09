@@ -3,6 +3,8 @@ import logging
 import tracemalloc
 import requests
 
+from multiprocessing import Pool
+
 
 def fetch_url(url):
     try:
@@ -13,8 +15,8 @@ def fetch_url(url):
         return resp.content
 
 def fetch_all(url_list):
-    for link in url_list:
-        response = fetch_url(link)
+    pool = Pool()
+    pool.map(fetch_url, url_list)
 
 if __name__ == "__main__":
 
@@ -47,19 +49,4 @@ if __name__ == "__main__":
 # 20:54:14: Fetch count 100, Time: 1.1940011978149414
 # 20:54:18: Fetch count 500, Time: 4.733238697052002
 # 20:54:27: Fetch count 1000, Time: 8.771993398666382
-# Current: 2 156 420, Peak: 8 382 371.
-
-# Current: 0, Peak: 0.
-# 20:57:10: Fetch count 1, Time: 0.9773504734039307
-# 20:57:12: Fetch count 10, Time: 1.5024409294128418
-# 20:57:20: Fetch count 100, Time: 8.425093650817871
-# 20:57:54: Fetch count 500, Time: 34.302616119384766
-# 20:59:01: Fetch count 1000, Time: 66.27125334739685
-# Current: 617 564, Peak: 17 942 206.
-
-# 21:13:19: Fetch count 1, Time: 0.7997395992279053
-# 21:13:20: Fetch count 10, Time: 0.7418296337127686
-# 21:13:21: Fetch count 100, Time: 1.1118485927581787
-# 21:13:24: Fetch count 500, Time: 2.8634135723114014
-# 21:13:30: Fetch count 1000, Time: 5.5502753257751465
-# Current: 8 679 052, Peak: 25 670 965.
+# Current: 2156420, Peak: 8382371.
