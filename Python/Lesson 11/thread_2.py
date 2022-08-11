@@ -34,7 +34,7 @@ if __name__ == "__main__":
     print("Current: %d, Peak: %d." % tracemalloc.get_traced_memory())
 
     
-    for ntimes in [1, 10, 100, 500, 1000]:
+    for ntimes in [1, 10, 100, 500, 1000, 10000]:
         start = time.time()
         responses = fetch_all([URL]*ntimes)
         logging.info(f"Fetch count {ntimes}, Time: {time.time()-start}")

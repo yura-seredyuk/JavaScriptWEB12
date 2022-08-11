@@ -14,7 +14,7 @@ def fetch_url(url):
     else:
         return resp.content
 
-def fetch_all(url_list):
+def fetch_all(url_list): 
     pool = Pool()
     pool.map(fetch_url, url_list)
 
