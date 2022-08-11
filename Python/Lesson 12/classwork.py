@@ -49,31 +49,30 @@ import re
 
 # print(TEST_STRING)
 
+# def password_validator(password:str):
+#     """
+#     Password validator
+#     :param password: - password string
+#     :return result: - validation result
+#     """
 
-def password_validator(password:str):
-    """
-    Password validator
-    :param password: - password string
-    :return result: - validation result
-    """
-
-    strong_pattern = re.compile(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")
-    middle_pattern = re.compile(r"^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[a-z\d@$!#%*?&]{8,}$")
-    light_pattern = re.compile(r"^(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$")
-
-
-    if strong_pattern.search(password):
-        return "Strong password!"
-    elif middle_pattern.search(password):
-        return "Good password!"
-    elif light_pattern.search(password):
-        return "Easy password!"
-
-    return "Incorrect password"
+#     strong_pattern = re.compile(r"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")
+#     middle_pattern = re.compile(r"^(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[a-z\d@$!#%*?&]{8,}$")
+#     light_pattern = re.compile(r"^(?=.*[a-z])(?=.*\d)[A-Za-z\d]{8,}$")
 
 
-print(password_validator("1111"))
-print(password_validator("qwerty1111"))
-print(password_validator("Test1235"))
-print(password_validator("!est1235"))
-print(password_validator("!eTst1235"))
+#     if strong_pattern.search(password):
+#         return "Strong password!"
+#     elif middle_pattern.search(password):
+#         return "Good password!"
+#     elif light_pattern.search(password):
+#         return "Easy password!"
+
+#     return "Incorrect password"
+
+
+# print(password_validator("1111"))
+# print(password_validator("qwerty1111"))
+# print(password_validator("Test1235"))
+# print(password_validator("!est1235"))
+# print(password_validator("!eTst1235"))
