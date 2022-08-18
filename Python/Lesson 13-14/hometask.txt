@@ -1,0 +1,5 @@
+UML: https://app.diagrams.net/#G15d1uVl0TiK9MOkiNoOngKGzyr2wdYsUN
+classwork-commit: https://github.com/yura-seredyuk/JavaScriptWEB12/commit/d68043ddbd2d20d7a7d2bb2714ba6c41457478c8
+
+
+У файлі connection налаштувати методи для виконання операцій INSERT, UPDATE, DELETE
