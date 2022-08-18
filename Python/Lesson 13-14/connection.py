@@ -23,12 +23,12 @@ class Connection():
     def getData(self, table, fields:tuple, selector=""):
         connection, cursor = self.openDB()
         # GET
-        select_query = f'''SELECT {','.join(fields)} FROM {','.join(table)} {selector};'''
-        print(select_query)
+        select_query = f'''SELECT {','.join(fields)} FROM {','.join(table)} {selector} ORDER BY ID;'''
+        # print(select_query)
         cursor.execute(select_query)
         connection.commit()
         results = cursor.fetchall()
-        print('Data: ',results)
+        # print('Data: ',results)
 
         self.closeDB(connection, cursor)
         return results
@@ -37,37 +37,44 @@ class Connection():
         connection, cursor = self.openDB()
         # POST
         id = self.getNextId(table)
-        print(data)
+        # print(data)
         fields = list(data.keys())
         fields.insert(0,"id")
         values = f"""({id},{','.join(map(lambda item: f"'{item}'",data.values()))})"""
         insert_query = f'''INSERT INTO {table} ({','.join(fields)}) VALUES {values};'''
-        print(insert_query)
+        # print(insert_query)
         cursor.execute(insert_query)
         connection.commit()
-        print('Table was updated!')
         self.closeDB(connection, cursor)
         return f"Table '{table}' was updated!"
 
     def updateData(self, table, data:dict, selector=""):
         connection, cursor = self.openDB()
         # PUT
-        update_query = f'''UPDATE {','.join(table)} SET {','.join(data)} WHERE {selector};'''
+        set_items = ''
+        for key in data:
+            set_items+= f"""{key} = '{data[key]}',"""
+
+        update_query = f'''UPDATE {table} SET {set_items[:-1]} WHERE {selector};'''
         cursor.execute(update_query)
         connection.commit()
         print('Data was updated')
         
         self.closeDB(connection, cursor)
+        return f"Data in table '{table}' was updated!"
+
 
     def deleteData(self, table, selector=""):
         connection, cursor = self.openDB()
         # DELETE
-        delete_query = f'''DELETE FROM {','.join(table)} WHERE {selector};'''
+        delete_query = f'''DELETE FROM {table} WHERE {selector};'''
         cursor.execute(delete_query)
         connection.commit()
         print('Category was deleted!')
         
         self.closeDB(connection, cursor)
+        selector = selector.split("=")[1]
+        return f"Category{selector} was deleted!"
 
     def getNextId(self,table):
         table = (table,)
