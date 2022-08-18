@@ -82,6 +82,35 @@ try:
     connection.commit()
     print('Table "order" created!')
 
+    # ADDRESS
+    create_table_query = '''CREATE TABLE IF NOT EXISTS address
+                            (id SERIAL PRIMARY KEY,
+                            street VARCHAR(100) NOT NULL,
+                            appartaments VARCHAR(10) NOT NULL,
+                            zip VARCHAR(10) NOT NULL,
+                            city_id INT NOT NULL REFERENCES city(id));'''
+    cursor.execute(create_table_query)
+    connection.commit()
+    print('Table "address" created!')
+
+    # PROFILE
+    create_table_query = '''CREATE TABLE IF NOT EXISTS profile 
+                            (id SERIAL PRIMARY KEY,
+                            username VARCHAR(50) NOT NULL,
+                            password VARCHAR(64) NOT NULL,
+                            first_name VARCHAR(50) NOT NULL,
+                            last_name VARCHAR(50) NOT NULL,
+                            date_of_birth DATE,
+                            user_group VARCHAR(10) NOT NULL,
+                            phone VARCHAR(15) NOT NULL,
+                            email VARCHAR(120) NOT NULL,
+                            city_id INT NOT NULL REFERENCES city(id),
+                            address_id INT REFERENCES address(id));'''
+    cursor.execute(create_table_query)
+    connection.commit()
+    print('Table "profile" created!')
+
+
 except (Exception, Error) as error:
     print("Error connection: ", error)
 finally:
