@@ -76,6 +76,15 @@ class Connection():
         selector = selector.split("=")[1]
         return f"Category{selector} was deleted!"
 
+    def login_check(self, login:str, password:str):
+        find_user = self.getData(('profile',),('*',),f"WHERE username = '{login}' AND password = '{password}'")
+        if find_user:
+            return find_user[0]
+        else:
+            return False
+
+
+
     def getNextId(self,table):
         table = (table,)
         fields = ("max(id)",)
@@ -132,4 +141,6 @@ if __name__ == "__main__":
     # print(conn.getNextId("product_category"))
 
     # print(conn.get_country_id('Ukraine'))
-    print(conn.get_city_id('Lviv', country_id=5))
+    # print(conn.get_city_id('Lviv', country_id=5))
+    # print(conn.login_check("manager1", "P@$$w0Rd"))
+    print(conn.login_check("admin", "admin"))

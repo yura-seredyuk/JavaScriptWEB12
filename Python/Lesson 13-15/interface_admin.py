@@ -4,23 +4,61 @@ from scripts.config import *
 
 from connection import Connection
 
+def authenticated(func):
+    def wrapper():
+        if True:
+            print("Welcome.")
+            func()
+        else:
+            print("Wrong username or password.")
+    return wrapper
+
+def check_authorization(attribute):
+    def _check_authorization(f):
+        def wrapper(self, *args):
+            print(getattr(self, attribute))
+            return f(self, *args)
+        return wrapper
+    return _check_authorization
 
 class Admin(Connection):
 
     def __init__(self, login, password):
         self.login = login
         self.password = password
+        self.group = 'admin'
+        self.authenticated = False
 
     def login_self(self):
-        pass
+        
+        if self.login_check(self.login, self.password):
+            self.authenticated = True
+        print(self.login_check(self.login, self.password))
+
+    def logout_self(self):
+        self.authenticated = False
+
+    
+
+    @authenticated
+    def say_whee(self):
+        print("Whee!")  
+
+    # @check_authorization(self.authenticated)
+    # def get(self):
+    #     print('get')
 
     # PRODUCT_CATEGORY
     def add_product_category(self, data:dict):
-        return self.insertData('product_category', data)
+        if self.authenticated:
+            return self.insertData('product_category', data)
+        else: return "Wrong username or password."
 
     def get_product_category(self, selector):
-        selector = f"WHERE category_name = '{selector}'"
-        return self.getData(('product_category',), ("*",), selector)
+        if self.authenticated:
+            selector = f"WHERE category_name = '{selector}'"
+            return self.getData(('product_category',), ("*",), selector)
+        else: return "Wrong username or password."
 
     def get_product_category_list(self):
         return self.getData(('product_category',),("*",))
@@ -75,22 +113,24 @@ class Admin(Connection):
             "city_id": city_id,
             "address_id": address_id
         }
-        profile_id = self.create_profile(profile_data)[1]
-        employee_data = {
-            "first_name": data["first_name"],
-            "last_name": data["last_name"],
-            "date_of_birth": data["date_of_birth"],
-            "city_id": city_id,
-            "profile_id": profile_id
-        }
-        employee = self.insertData('employee',employee_data)
-        return employee
+        # profile_id = self.create_profile(profile_data)[1]
+        # employee_data = {
+        #     "first_name": data["first_name"],
+        #     "last_name": data["last_name"],
+        #     "date_of_birth": data["date_of_birth"],
+        #     "city_id": city_id,
+        #     "profile_id": profile_id
+        # }
+        # employee = self.insertData('employee',employee_data)
+        # return employee
         
 
 
 if __name__ == "__main__":
 
-    admin = Admin('login', 'password')
+    admin = Admin('admin', 'admin')
+    admin.login_self()
+    # admin.logout_self()
 
     # PRODUCT_CATEGORY
     # data = {
@@ -98,7 +138,7 @@ if __name__ == "__main__":
     # }
     # print(admin.add_product_category(data))
 
-    # print(admin.get_product_category("Phones"))
+    print(admin.get_product_category("Phones"))
 
     # print(admin.get_product_category_list())
 
@@ -139,7 +179,9 @@ if __name__ == "__main__":
         "city_id": "Rivne",
         "country_id": "Ukraine"
     }
-    admin.add_manager(data)
+    # admin.add_manager(data)
+
+    
 
 
 
