@@ -125,8 +125,21 @@ class Connection():
     def create_address(self, data:dict):
         return self.insertData("address",data)
 
+    def edit_address(self, data:dict, address_id:int):
+        pass    
+
+    def delete_address(self, address_id:int):
+        pass
+
     def create_profile(self, data:dict):
         return self.insertData("profile",data)
+
+    def edit_profile(self, data:dict, profile_id:int):
+        pass
+
+    def delete_profile(self, profile_id:int):
+        self.delete_address(profile_id)
+        pass
 
         
 if __name__ == "__main__":

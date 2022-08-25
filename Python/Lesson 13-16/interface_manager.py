@@ -22,7 +22,6 @@ class Manager(Connection):
     def logout_self(self):
         self.authenticated = False
 
-    
     # ORDERS
     @authenticated
     def get_orders(self, status=""):
@@ -78,14 +77,15 @@ class Manager(Connection):
             "address_id": address_id
         }
         profile_id = self.create_profile(profile_data)[1]
-        customer_data = {
+        employee_data = {
             "first_name": data["first_name"],
             "last_name": data["last_name"],
+            "date_of_birth": data["date_of_birth"],
             "city_id": city_id,
             "profile_id": profile_id
         }
-        customer = self.insertData('customer',customer_data)
-        return customer
+        employee = self.insertData('employee',employee_data)
+        return employee
         
 
 
