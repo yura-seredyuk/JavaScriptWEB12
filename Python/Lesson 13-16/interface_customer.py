@@ -1,6 +1,6 @@
-from dataclasses import fields
 import psycopg2
 from psycopg2 import Error
+from  datetime import datetime
 from scripts.config import *
 
 from connection import Connection, authenticated
@@ -79,8 +79,6 @@ class Customer(Connection):
         customer = self.getData(("customer c",), (fields,), selector)
         return customer
 
-
-
     @authenticated
     def edit_customer(self, data:dict):
         profile_id, address_id, customer_id = self._customer_data()
@@ -117,7 +115,38 @@ class Customer(Connection):
         customer = self.updateData('customer',customer_data, selector)
         return customer
         
+    # ORDERS
+    def get_orders(self, status=""):
+        _, _, customer_id = self._customer_data()
+        fields = """o.id, ci.city_name, o.date_of_order, p.product_name,
+         o.price, o.status"""
+        tables = ("orders o",)
+        selector = """left join city ci  on ci.id = o.city_id 
+        left join product p on p.id = o.product_id"""
+        if status:
+            selector += f" WHERE o.customer_id = '{customer_id}' AND o.status = {status} order by id"
+            return self.getData(tables,(fields,), selector)
+        else:
+            selector += f" WHERE o.customer_id = '{customer_id}'"
+            return self.getData(tables,(fields,), selector + " order by id")
 
+    def create_order(self, product:str, count=1, city = ''):
+        _, _, customer_id = self._customer_data()
+        if city:
+            city = self.getData(("city",),("id",), f"where city_name = '{city}'")[0][0]
+        else:
+            city = self.getData(("customer",),("city_id",), f"where id = {customer_id}")[0][0]
+        product_id, unit_price = self.getData(("product",),("id", "unit_price"), f"where product_name = '{product}'")[0]
+        data = {
+            "customer_id": customer_id,
+            "city_id": city,
+            "date_of_order": datetime.strftime(datetime.now(), '%Y-%m-%d'),
+            "product_id": product_id,
+            "price": unit_price * count,
+            "status": "opened"
+        }
+        self.insertData('orders', data)
+        
 
 if __name__ == "__main__":
 
@@ -131,7 +160,24 @@ if __name__ == "__main__":
     customer._customer_data()
     print(customer.get_customer())
 
-
+    data = {
+        "username": "manager1",
+        "password": "P@$$w0Rd",
+        "first_name": "Bob",
+        "last_name": "Robinson",
+        "date_of_birth": "1996-08-31",
+        "phone": "+380981234567",
+        "email": "bob.robinson@gmail.com",
+        "street": "Beautiful st. 10",
+        "appartaments": "20",
+        "zip": "33027",
+        "city_id": "Rivne",
+        "country_id": "Ukraine"
+    }
+    # customer.edit_customer(data)
+    # print(customer.get_orders())
+    # customer.create_order('Tofu')
+    customer.create_order('Tofu', 2, "Rivne")
 
 
 

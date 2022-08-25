@@ -45,7 +45,7 @@ class Manager(Connection):
         left join city ci  on ci.id = o.city_id 
         left join product p on p.id = o.product_id"""
         if status:
-            selector += f" WHERE o.customer_id = '{customer_id}' order by id"
+            selector += f" WHERE o.status = '{status}' order by id"
             return self.getData(tables,(fields,), selector)
         else:
             return self.getData(tables,(fields,), selector + " order by id")
