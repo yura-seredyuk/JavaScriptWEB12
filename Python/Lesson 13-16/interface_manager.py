@@ -1,3 +1,5 @@
+from dataclasses import fields
+from msilib.schema import tables
 import psycopg2
 from psycopg2 import Error
 from scripts.config import *
@@ -26,13 +28,30 @@ class Manager(Connection):
     # ORDERS
     @authenticated
     def get_orders(self, status=""):
-        if self.authenticated:
-            if status:
-                selector = f"WHERE status = '{status}'"
-                return self.getData(('orders',),("*",), selector)
-            else:
-                return self.getData(('orders',),("*",))
-        else: return "Wrong username or password."
+        """select o.id, concat(e.first_name, ' ',e.last_name) as "employee",
+        concat(c.first_name, ' ',c.last_name) as "customer", ci.city_name,
+        o.date_of_order, p.product_name, o.price, o.status 
+        from  orders o 
+        left join employee e on e.id = o.employee_id
+        left join customer c  on c.id = o.customer_id
+        left join city ci  on ci.id = o.city_id 
+        left join product p on p.id = o.product_id
+        where o.status = 'opened'
+        order by id;"""
+
+        fields = """o.id, concat(e.first_name, ' ',e.last_name) as "employee",
+        concat(c.first_name, ' ',c.last_name) as "customer", ci.city_name,
+        o.date_of_order, p.product_name, o.price, o.status"""
+        tables = ("orders o",)
+        selector = """left join employee e on e.id = o.employee_id
+        left join customer c  on c.id = o.customer_id
+        left join city ci  on ci.id = o.city_id 
+        left join product p on p.id = o.product_id"""
+        if status:
+            selector += f" WHERE status = '{status}' order by id"
+            return self.getData(tables,(fields,), selector)
+        else:
+            return self.getData(tables,(fields,), selector + " order by id")
     
 
     # EMPLOYEE!!!!!!!
@@ -79,8 +98,8 @@ if __name__ == "__main__":
     manager.login_self()
     # admin.logout_self()
 
-    # print(manager.get_orders())
-    print(manager.get_orders('closed'))
+    print(manager.get_orders())
+    # print(manager.get_orders('closed'))
 
 
 
