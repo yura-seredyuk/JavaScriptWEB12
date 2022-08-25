@@ -2,24 +2,8 @@ import psycopg2
 from psycopg2 import Error
 from scripts.config import *
 
-from connection import Connection
+from connection import Connection, authenticated
 
-def authenticated(func):
-    def wrapper():
-        if True:
-            print("Welcome.")
-            func()
-        else:
-            print("Wrong username or password.")
-    return wrapper
-
-def check_authorization(attribute):
-    def _check_authorization(f):
-        def wrapper(self, *args):
-            print(getattr(self, attribute))
-            return f(self, *args)
-        return wrapper
-    return _check_authorization
 
 class Manager(Connection):
 
@@ -39,16 +23,8 @@ class Manager(Connection):
         self.authenticated = False
 
     
-
-    @authenticated
-    def say_whee(self):
-        print("Whee!")  
-
-    # @check_authorization(self.authenticated)
-    # def get(self):
-    #     print('get')
-
     # ORDERS
+    @authenticated
     def get_orders(self, status=""):
         if self.authenticated:
             if status:
@@ -60,6 +36,7 @@ class Manager(Connection):
     
 
     # EMPLOYEE!!!!!!!
+    @authenticated
     def add_manager(self, data:dict):
         country_id = self.get_country_id(data["country_id"])
         city_id = self.get_city_id(data["city_id"], country_id=country_id)

@@ -3,6 +3,15 @@ from psycopg2 import Error
 from scripts.config import *
 
 
+def authenticated(f):
+    def wrapper(*args):
+        if args[0].authenticated:
+            return f(*args)
+        else:
+            return "Wrong username or password."
+    return wrapper
+
+
 class Connection():
 
     @classmethod

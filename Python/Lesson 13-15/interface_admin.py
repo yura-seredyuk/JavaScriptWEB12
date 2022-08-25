@@ -2,24 +2,8 @@ import psycopg2
 from psycopg2 import Error
 from scripts.config import *
 
-from connection import Connection
+from connection import Connection, authenticated
 
-def authenticated(func):
-    def wrapper():
-        if True:
-            print("Welcome.")
-            func()
-        else:
-            print("Wrong username or password.")
-    return wrapper
-
-def check_authorization(attribute):
-    def _check_authorization(f):
-        def wrapper(self, *args):
-            print(getattr(self, attribute))
-            return f(self, *args)
-        return wrapper
-    return _check_authorization
 
 class Admin(Connection):
 
@@ -30,52 +14,44 @@ class Admin(Connection):
         self.authenticated = False
 
     def login_self(self):
-        
         if self.login_check(self.login, self.password):
             self.authenticated = True
-        print(self.login_check(self.login, self.password))
-
+    
+    @authenticated
     def logout_self(self):
         self.authenticated = False
 
-    
+    # PRODUCT_CATEGORY
+    @authenticated
+    def add_product_category(self, data:dict):
+        return self.insertData('product_category', data)
 
     @authenticated
-    def say_whee(self):
-        print("Whee!")  
-
-    # @check_authorization(self.authenticated)
-    # def get(self):
-    #     print('get')
-
-    # PRODUCT_CATEGORY
-    def add_product_category(self, data:dict):
-        if self.authenticated:
-            return self.insertData('product_category', data)
-        else: return "Wrong username or password."
-
     def get_product_category(self, selector):
-        if self.authenticated:
-            selector = f"WHERE category_name = '{selector}'"
-            return self.getData(('product_category',), ("*",), selector)
-        else: return "Wrong username or password."
+        selector = f"WHERE category_name = '{selector}'"
+        return self.getData(('product_category',), ("*",), selector)
 
+    @authenticated
     def get_product_category_list(self):
         return self.getData(('product_category',),("*",))
 
+    @authenticated
     def edit_product_category(self, data:dict, selector):
         selector = f"category_name = '{selector}'"
         return self.updateData('product_category', data, selector)
 
+    @authenticated
     def delete_product_category(self, selector):
         selector = f"category_name = '{selector}'"
         return self.deleteData('product_category', selector)
 
     # COUNTRY
+    @authenticated
     def add_country(self, data:dict):
         return self.insertData('country', data)
 
     # PRODUCT
+    @authenticated
     def add_product(self, data:dict):
         data["country_id"] = self.get_country_id(data["country_id"])
         
@@ -90,6 +66,7 @@ class Admin(Connection):
         return self.insertData('product', data)
 
     # MANAGER
+    @authenticated
     def add_manager(self, data:dict):
         country_id = self.get_country_id(data["country_id"])
         city_id = self.get_city_id(data["city_id"], country_id=country_id)
@@ -113,16 +90,16 @@ class Admin(Connection):
             "city_id": city_id,
             "address_id": address_id
         }
-        # profile_id = self.create_profile(profile_data)[1]
-        # employee_data = {
-        #     "first_name": data["first_name"],
-        #     "last_name": data["last_name"],
-        #     "date_of_birth": data["date_of_birth"],
-        #     "city_id": city_id,
-        #     "profile_id": profile_id
-        # }
-        # employee = self.insertData('employee',employee_data)
-        # return employee
+        profile_id = self.create_profile(profile_data)[1]
+        employee_data = {
+            "first_name": data["first_name"],
+            "last_name": data["last_name"],
+            "date_of_birth": data["date_of_birth"],
+            "city_id": city_id,
+            "profile_id": profile_id
+        }
+        employee = self.insertData('employee',employee_data)
+        return employee
         
 
 
@@ -138,7 +115,7 @@ if __name__ == "__main__":
     # }
     # print(admin.add_product_category(data))
 
-    print(admin.get_product_category("Phones"))
+    # print(admin.get_product_category("Phones"))
 
     # print(admin.get_product_category_list())
 
