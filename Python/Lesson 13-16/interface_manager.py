@@ -1,5 +1,3 @@
-from dataclasses import fields
-from msilib.schema import tables
 import psycopg2
 from psycopg2 import Error
 from scripts.config import *
@@ -38,7 +36,7 @@ class Manager(Connection):
         left join product p on p.id = o.product_id
         where o.status = 'opened'
         order by id;"""
-
+        customer_id = ""
         fields = """o.id, concat(e.first_name, ' ',e.last_name) as "employee",
         concat(c.first_name, ' ',c.last_name) as "customer", ci.city_name,
         o.date_of_order, p.product_name, o.price, o.status"""
@@ -48,7 +46,7 @@ class Manager(Connection):
         left join city ci  on ci.id = o.city_id 
         left join product p on p.id = o.product_id"""
         if status:
-            selector += f" WHERE status = '{status}' order by id"
+            selector += f" WHERE o.customer_id = '{customer_id}' order by id"
             return self.getData(tables,(fields,), selector)
         else:
             return self.getData(tables,(fields,), selector + " order by id")
@@ -79,16 +77,15 @@ class Manager(Connection):
             "city_id": city_id,
             "address_id": address_id
         }
-        # profile_id = self.create_profile(profile_data)[1]
-        # employee_data = {
-        #     "first_name": data["first_name"],
-        #     "last_name": data["last_name"],
-        #     "date_of_birth": data["date_of_birth"],
-        #     "city_id": city_id,
-        #     "profile_id": profile_id
-        # }
-        # employee = self.insertData('employee',employee_data)
-        # return employee
+        profile_id = self.create_profile(profile_data)[1]
+        customer_data = {
+            "first_name": data["first_name"],
+            "last_name": data["last_name"],
+            "city_id": city_id,
+            "profile_id": profile_id
+        }
+        customer = self.insertData('customer',customer_data)
+        return customer
         
 
 
