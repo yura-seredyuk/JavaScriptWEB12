@@ -1,0 +1,6 @@
+UML: https://app.diagrams.net/#G15d1uVl0TiK9MOkiNoOngKGzyr2wdYsUN
+classwork: https://github.com/yura-seredyuk/JavaScriptWEB12/tree/master/Python/Lesson%2013-14
+
+Завдання:
+ Доробити всі методи інтерфейсу Admin окрім методів, що стосуються роботи з інтерфейсом Manager
+
