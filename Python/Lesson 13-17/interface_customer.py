@@ -29,34 +29,6 @@ class Customer(Connection):
         customer_id = self.getData(("customer",),("id",), selector)[0][0]
         return profile_id, address_id, customer_id
 
-    # ORDERS
-    @authenticated
-    def get_orders(self, status=""):
-        """select o.id, concat(e.first_name, ' ',e.last_name) as "employee",
-        concat(c.first_name, ' ',c.last_name) as "customer", ci.city_name,
-        o.date_of_order, p.product_name, o.price, o.status 
-        from  orders o 
-        left join employee e on e.id = o.employee_id
-        left join customer c  on c.id = o.customer_id
-        left join city ci  on ci.id = o.city_id 
-        left join product p on p.id = o.product_id
-        where o.status = 'opened'
-        order by id;"""
-
-        fields = """o.id, concat(e.first_name, ' ',e.last_name) as "employee",
-        concat(c.first_name, ' ',c.last_name) as "customer", ci.city_name,
-        o.date_of_order, p.product_name, o.price, o.status"""
-        tables = ("orders o",)
-        selector = """left join employee e on e.id = o.employee_id
-        left join customer c  on c.id = o.customer_id
-        left join city ci  on ci.id = o.city_id 
-        left join product p on p.id = o.product_id"""
-        if status:
-            selector += f" WHERE status = '{status}' order by id"
-            return self.getData(tables,(fields,), selector)
-        else:
-            return self.getData(tables,(fields,), selector + " order by id")
-    
     # PROFILE
     @authenticated
     def get_customer(self):
