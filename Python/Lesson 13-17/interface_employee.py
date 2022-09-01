@@ -43,7 +43,6 @@ class Employee(Connection):
         where o.status = 'opened'
         order by id;"""
         _, _, emp_id = self._employee_data()
-        print(emp_id)
         city_id = self.getData(("employee",),("city_id",),f"WHERE id = {emp_id}")[0][0]
         fields = """o.id, concat(e.first_name, ' ',e.last_name) as "employee",
         concat(c.first_name, ' ',c.last_name) as "customer", ci.city_name,
@@ -57,7 +56,7 @@ class Employee(Connection):
             selector += f" WHERE o.status = '{status}' and o.city_id = '{city_id}' order by id"
             return self.getData(tables,(fields,), selector)
         else:
-            selector += f" WHERE o.city_id = '{city_id}' order by id"
+            selector += f" WHERE o.city_id = '{city_id}' and (o.employee_id = '{emp_id}' or o.employee_id is NULL) order by id"
             return self.getData(tables,(fields,), selector)
     
 
@@ -134,8 +133,8 @@ if __name__ == "__main__":
     employee.login_self()
     # admin.logout_self()
 
-    # pprint(employee.get_orders())
-    employee.change_order_status(11,'in progress')
+    pprint(employee.get_orders())
+    # employee.change_order_status(11,'in progress')
     # print(employee.get_orders('closed'))
     # data = {
     #     "username": "emp1",
