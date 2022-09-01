@@ -65,6 +65,7 @@ class Connection():
             set_items+= f"""{key} = '{data[key]}',"""
 
         update_query = f'''UPDATE {table} SET {set_items[:-1]} WHERE {selector};'''
+        print(update_query)
         cursor.execute(update_query)
         connection.commit()
         print('Data was updated')
