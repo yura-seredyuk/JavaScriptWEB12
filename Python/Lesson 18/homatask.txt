@@ -1,0 +1,8 @@
+classwork: https://github.com/yura-seredyuk/JavaScriptWEB12/tree/master/Python/Lesson%2018
+
+Завдання:
+1. Встановити https://insomnia.rest/ для тестування API https://treblle.com/projects/30563ae9-cea7-4eaa-abfb-197687639e8c/documentation
+2. Написати всі можливі тести, для перевірок усіх ендпоінтів articles (unittest/pytest)
+3. Розробити тест план і опис тест кейсу для одного GET і одного POST тестів (Excel)
+
+
