@@ -1,5 +1,0 @@
-UML: https://app.diagrams.net/#G15d1uVl0TiK9MOkiNoOngKGzyr2wdYsUN
-classwork: 
-
-
-У файлі connection налаштувати методи для виконання операцій INSERT, UPDATE, DELETE

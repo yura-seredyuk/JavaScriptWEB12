@@ -9,6 +9,7 @@
 6. Show first and last names of the employees as well as the count of their orders shipped after required date during the year 2020 (use left join).
 
 7. Show the list of customers’ names who used to order the ‘Tofu’ product, along with the total amount of the product they have ordered and with the total sum for ordered product calculated.
+
 8. Show the list of french customers’ names who used to order non-french products (use left join).
 9. Show the list of product categories along with total ordering sums calculated for the orders made for the products of each category, during the year 2020.
 10. Show the list of cities where employees and customers are from and where orders have been made to. Duplicates should be eliminated.
